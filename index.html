@@ -7,9 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Weather Dashboard</h1>
+        <input type="text" id="search-bar" placeholder="Enter a City...">
+        <button id="search-btn">Search</button>
+        
+
+        <div id="weatherDisplay">
+            <h2 id="city">Weather</h2>
+            
+            <p id="weather"></p>
+            <p id="temperature"></p>
+            <p id="wind"></p>
+            
+        </div>
 
 
+        <div>
+            <h3>Recent searches</h3>
+            <ul id="recentSearches"></ul>
+
+        </div>
+
+
+    </div>
 
     <script src="index.js"></script>
 </body>
