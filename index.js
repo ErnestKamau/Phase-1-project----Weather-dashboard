@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const searchButton = document.getElementById("search-btn")
     const cityInput = document.getElementById("search-bar")
     const listOfRecentSearches = document.getElementById("recentSearches")
-    // const skycons = new Skycons({"color": "black"})
 
     cityInput.addEventListener("keypress", (events) => {
         if (events.key === "Enter"){
