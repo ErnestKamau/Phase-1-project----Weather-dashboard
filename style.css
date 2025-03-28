@@ -1,0 +1,44 @@
+body{
+    font-family:'Courier New', Courier, monospace;
+    background-color:rgb(44, 164, 230);
+    text-align: center;
+
+
+
+}
+
+#header{
+    color: azure;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+    padding: 15px 0;
+}
+
+#search-bar{
+    cursor: pointer;
+}
+
+#search-btn{
+    cursor:pointer;
+}
+
+#weatherDisplay{
+    padding: 30px;
+}
+
+h2{
+    color: aliceblue;
+}
+
+h3{
+    color: aliceblue;
+}
+
+#recentSearches{
+    list-style: none;
+    align-items: center;
+    margin: 0%;
+}
