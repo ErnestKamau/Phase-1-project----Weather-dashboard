@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const searchButton = document.getElementById("search-btn")
     const cityInput = document.getElementById("search-bar")
     const listOfRecentSearches = document.getElementById("recentSearches")
+    const unitToggle = document.getElementById("unit-toggle")
+    let isCelcius = true
+    let currentTemperature = null
+    
 
     cityInput.addEventListener("keypress", (events) => {
         if (events.key === "Enter"){
@@ -23,6 +27,12 @@ document.addEventListener("DOMContentLoaded", ()=> {
         }
     })
 
+    unitToggle.addEventListener("click", () => {
+        if (currentTemperature !== null) {
+            toggleTemperatureUnit();
+        }
+    });
+    
 
     function getCityWeather(city){
         getCityCoordinates(city)
@@ -33,6 +43,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
             .then(res => res.json())
             .then( data => {
+                currentTemperature = data.current_weather.temperature;
                 displayCityWeather (city, data.current_weather)
                 saveRecentSearch(city)
             })
@@ -85,10 +96,30 @@ document.addEventListener("DOMContentLoaded", ()=> {
         const weatherCondition = weatherDescription(weather.weathercode)
         document.getElementById("weatherCondition").textContent = `Condition: ${weatherCondition}`
 
-        const iconSrc = getWeatherIcon(weather.weathercode);
-        document.getElementById("weatherIcon").src = iconSrc;
-        document.getElementById("weatherIcon").alt = weatherCondition;
+        const iconSrc = getWeatherIcon(weather.weathercode)
+        document.getElementById("weatherIcon").src = iconSrc
+        document.getElementById("weatherIcon").alt = weatherCondition
 
+        updateTemperatureDisplay()
+
+    }
+
+
+    function updateTemperatureDisplay() {
+        const tempElement = document.getElementById("temp")
+        if (isCelcius) {
+            tempElement.textContent = `Temperature: ${currentTemperature}°C`
+            unitToggle.textContent = "Switch to °F";
+        } else {
+            let fahrenheit = (currentTemperature * 9/5) + 32
+            tempElement.textContent = `Temperature: ${fahrenheit.toFixed(1)}°F`
+            unitToggle.textContent = "Switch to °C"
+        }
+    }
+
+    function toggleTemperatureUnit() {
+        isCelcius = !isCelcius
+        updateTemperatureDisplay()
     }
 
     function saveRecentSearch(city){
