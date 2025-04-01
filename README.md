@@ -1,4 +1,4 @@
-##OVERVIEW
+## OVERVIEW
 -provides real-time weather information for any location. It fetches data from the Open-Meteo API and displays current weather conditions along with a forecast. The app also features animated weather icons for a more engaging user experience.
 
 Features
